@@ -8,6 +8,7 @@
  */
 
 /* eslint-disable max-len */
+require('dotenv').config();
 
 if (process.env.BROWSER) {
   throw new Error(
@@ -33,7 +34,9 @@ module.exports = {
   },
 
   // Database
-  databaseUrl: process.env.DATABASE_URL || 'sqlite:database.sqlite',
+  databaseUrl: process.env.DATABASE_URL,
+
+  databaseName: process.env.DATABASE_NAME,
 
   // Web analytics
   analytics: {
