@@ -32,7 +32,7 @@ class Home extends React.Component {
             /* eslint no-underscore-dangle: 0 */
             <article key={`${item._id}`} className={s.newsItem}>
               <h1 className={s.newsTitle}>
-                <a href={item._id}>{item.name}</a>
+                <a href={`/apartment/${item._id}/edit`}>{item.name}</a>
               </h1>
               <div className={s.newsDesc}> {item.description}</div>
             </article>

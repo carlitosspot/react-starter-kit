@@ -1,3 +1,7 @@
-export default function getAllApartment(req, res) {
-  return res.json({ id: 'hk' });
+import Apartment from '../data/models/Apartment';
+
+export default function getApartment(req, res) {
+  return Apartment.findById(req.params.id).then(apartment =>
+    res.json(apartment),
+  );
 }
