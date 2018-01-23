@@ -11,9 +11,9 @@ import React from 'react';
 import Home from './Home';
 import Layout from '../../components/Layout';
 
-async function action() {
-  // const resp = await fetch('/api/apartments', { method: 'GET' });
-  // const data = await resp.json();
+async function action({ fetch }) {
+  const resp = await fetch('/api/apartments', { method: 'GET' });
+  const apartments = await resp.json();
 
   // const resp = await fetch('/graphql', {
   //   body: JSON.stringify({
@@ -27,7 +27,7 @@ async function action() {
     chunks: ['home'],
     component: (
       <Layout>
-        <Home news={[]} />
+        <Home apartments={apartments} />
       </Layout>
     ),
   };
