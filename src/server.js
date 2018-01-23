@@ -19,6 +19,7 @@ import nodeFetch from 'node-fetch';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
 import PrettyError from 'pretty-error';
+import mongoose from 'mongoose';
 import App from './components/App';
 import Html from './components/Html';
 import { ErrorPageWithoutStyle } from './routes/error/ErrorPage';
@@ -31,6 +32,12 @@ import schema from './data/schema';
 // import assets from './asset-manifest.json'; // eslint-disable-line import/no-unresolved
 import chunks from './chunk-manifest.json'; // eslint-disable-line import/no-unresolved
 import config from './config';
+import api from './api';
+
+const { databaseUrl, databaseName } = config;
+const dbUrl = `${databaseUrl}${databaseName}`;
+
+mongoose.connect(dbUrl);
 
 process.on('unhandledRejection', (reason, p) => {
   console.error('Unhandled Rejection at:', p, 'reason:', reason);
@@ -121,6 +128,8 @@ if (__DEV__) {
 //     pretty: __DEV__,
 //   })),
 // );
+
+app.use('/api', api);
 
 //
 // Register server-side rendering middleware
@@ -218,14 +227,9 @@ app.use((err, req, res, next) => {
 //
 // Launch the server
 // -----------------------------------------------------------------------------
-// const promise = models.sync().catch(err => console.error(err.stack));
-// if (!module.hot) {
-//   promise.then(() => {
 app.listen(config.port, () => {
   console.info(`The server is running at http://localhost:${config.port}/`);
 });
-//   });
-// }
 
 //
 // Hot Module Replacement

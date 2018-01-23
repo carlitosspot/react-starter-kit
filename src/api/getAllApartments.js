@@ -1,3 +1,5 @@
+import Apartment from '../data/models/Apartment';
+
 export default function getAllApartments(req, res) {
-  return res.json([{ id: 'hk' }, { id: 'les' }]);
+  return Apartment.find({}).then(apartments => res.json(apartments));
 }
