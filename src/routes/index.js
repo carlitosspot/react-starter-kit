@@ -23,6 +23,11 @@ const routes = {
       path: '/apartment/:id/edit',
       load: () => import(/* webpackChunkName: 'apartment' */ './apartment'),
     },
+    {
+      path: '/apartment/new',
+      load: () =>
+        import(/* webpackChunkName: 'new-apartment' */ './new-apartment'),
+    },
     // {
     //   path: '/contact',
     //   load: () => import(/* webpackChunkName: 'contact' */ './contact'),
