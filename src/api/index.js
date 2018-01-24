@@ -3,6 +3,7 @@ import getAllApartments from './getAllApartments';
 import getApartmentDetails from './getApartment';
 import saveSignedContract from './saveSignedContract';
 import getContracts from './getContract';
+import updateApartmentDetails from './updateApartmentDetails';
 
 const api = express();
 
@@ -10,6 +11,8 @@ const api = express();
  * Get apartment info/details
  */
 api.get('/apartments/:id', getApartmentDetails);
+
+api.put('/apartments/:id', updateApartmentDetails);
 
 /**
  * Get all list of apartments

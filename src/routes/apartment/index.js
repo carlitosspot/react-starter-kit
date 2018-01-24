@@ -14,7 +14,7 @@ async function action(props) {
     title,
     component: (
       <Layout>
-        <Apartment name={apartment.name} />
+        <Apartment apartment={{ ...apartment }} />
       </Layout>
     ),
   };
