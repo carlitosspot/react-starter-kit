@@ -18,7 +18,9 @@ class NewApartment extends React.Component {
     };
   }
 
-  handleSubmit(data) {
+  handleSubmit(apartment) {
+    const data = apartment;
+    data.listed = true;
     this.setState({ saving: true });
     const url = `/api/contracts`;
     fetch(url, {
