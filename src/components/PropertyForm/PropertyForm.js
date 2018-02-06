@@ -9,8 +9,10 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { convertToRaw, EditorState, convertFromRaw } from 'draft-js';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './PropertyForm.css';
+import TextEditor from '../TextEditor';
 
 class PropertyForm extends React.Component {
   static propTypes = {
@@ -23,13 +25,21 @@ class PropertyForm extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.onEditorContentChange = this.onEditorContentChange.bind(this);
+
+    const { apartment } = this.props;
     const {
       name = '',
       description = '',
       address = '',
       wifiName = '',
       wifiPassword = '',
-    } = this.props.apartment;
+      instructions = apartment.instructions
+        ? EditorState.createWithContent(convertFromRaw(apartment.instructions))
+        : EditorState.createEmpty(),
+    } = apartment;
+
+    this.editorsContent = {};
 
     this.state = {
       name,
@@ -37,22 +47,37 @@ class PropertyForm extends React.Component {
       address,
       wifiName,
       wifiPassword,
+      instructions,
     };
+  }
+
+  onEditorContentChange(editorName, editorContent) {
+    this.editorsContent[editorName] = editorContent.getCurrentContent();
   }
 
   handleChange(event) {
     const { name, value } = event.target;
-
     this.setState({ [name]: value });
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    this.props.onSubmit(this.state);
+  handleSubmit(e) {
+    e.preventDefault();
+    const data = {
+      ...this.state,
+      instructions: convertToRaw(this.editorsContent.instructions),
+    };
+    this.props.onSubmit(data);
   }
 
   render() {
-    const { name, description, address, wifiName, wifiPassword } = this.state;
+    const {
+      name,
+      description,
+      address,
+      wifiName,
+      wifiPassword,
+      instructions,
+    } = this.state;
 
     return (
       <form onSubmit={this.handleSubmit} className={s.root}>
@@ -98,6 +123,14 @@ class PropertyForm extends React.Component {
             name="description"
             value={description}
             onChange={this.handleChange}
+          />
+        </label>
+        <label htmlFor="instructions">
+          Instructions:
+          <TextEditor
+            name="instructions"
+            content={instructions}
+            onContentChange={this.onEditorContentChange}
           />
         </label>
         <input type="submit" value="Submit" />
