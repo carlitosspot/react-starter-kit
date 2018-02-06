@@ -118,7 +118,7 @@ async function deploy() {
   }
   await spawn(
     'git',
-    ['push', remote.name, `master:${remote.branch}`, '--set-upstream'],
+    ['push', remote.name, `HEAD:${remote.branch}`, '--set-upstream'],
     options,
   );
 

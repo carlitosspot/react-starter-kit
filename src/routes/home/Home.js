@@ -27,14 +27,14 @@ class Home extends React.Component {
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <h1>Properties</h1>
+          <h1>Properties head</h1>
           {this.props.apartments.map(item => (
             /* eslint no-underscore-dangle: 0 */
             <article key={`${item._id}`} className={s.newsItem}>
               <h1 className={s.newsTitle}>
                 <a href={`/apartment/${item._id}/edit`}>{item.name}</a>
               </h1>
-              <div className={s.newsDesc}> {item.description}</div>
+              <div className={s.newsDesc}> {item.address}</div>
             </article>
           ))}
         </div>

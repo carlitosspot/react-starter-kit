@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Apartment.css';
+import PropertyForm from '../../components/PropertyForm';
 
 class Apartment extends React.Component {
   static propTypes = {
@@ -12,32 +13,20 @@ class Apartment extends React.Component {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.onNameChange = this.onNameChange.bind(this);
-    this.onDescriptionChange = this.onDescriptionChange.bind(this);
 
-    const { name, description, _id } = this.props.apartment;
+    const { _id, name } = this.props.apartment;
     this.state = {
       name,
-      description,
       id: _id,
     };
   }
 
-  onNameChange(e) {
-    this.setState({ name: e.target.value });
-  }
-
-  onDescriptionChange(e) {
-    this.setState({ description: e.target.value });
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    const { name, description, id } = this.state;
+  handleSubmit(data) {
+    const { id } = this.state;
     const url = `/api/apartments/${id}`;
     fetch(url, {
       method: 'PUT', // or 'PUT'
-      body: JSON.stringify({ name, description, id }),
+      body: JSON.stringify({ ...data }),
       headers: new Headers({
         'Content-Type': 'application/json',
       }),
@@ -48,31 +37,14 @@ class Apartment extends React.Component {
   }
 
   render() {
-    const { name, description } = this.state;
+    const { apartment } = this.props;
+    const { name } = this.state;
+
     return (
       <div className={s.root}>
         <div className={s.container}>
           <h1>{name}</h1>
-          <form onSubmit={this.handleSubmit}>
-            <label htmlFor="name">
-              Name:
-              <input
-                type="text"
-                name="name"
-                value={name}
-                onChange={this.onNameChange}
-              />
-            </label>
-            <label htmlFor="description">
-              Name:
-              <textarea
-                name="name"
-                value={description}
-                onChange={this.onDescriptionChange}
-              />
-            </label>
-            <input type="submit" value="Submit" />
-          </form>
+          <PropertyForm apartment={apartment} onSubmit={this.handleSubmit} />
         </div>
       </div>
     );

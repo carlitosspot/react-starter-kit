@@ -1,0 +1,10 @@
+import Apartment from '../data/models/Apartment';
+
+export default function saveApartment(req, res) {
+  const property = new Apartment(req.body);
+
+  return property
+    .save()
+    .then(result => res.json({ status: 'ok', result }))
+    .catch(error => res.json({ status: 'error', error }));
+}

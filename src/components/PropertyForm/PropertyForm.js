@@ -30,24 +30,43 @@ class PropertyForm extends React.Component {
     const { apartment } = this.props;
     const {
       name = '',
-      description = '',
       address = '',
       wifiName = '',
       wifiPassword = '',
-      instructions = apartment.instructions
-        ? EditorState.createWithContent(convertFromRaw(apartment.instructions))
-        : EditorState.createEmpty(),
     } = apartment;
 
-    this.editorsContent = {};
+    const instructions = apartment.instructions
+      ? EditorState.createWithContent(
+          convertFromRaw(JSON.parse(apartment.instructions)),
+        )
+      : EditorState.createEmpty();
+
+    const description = apartment.description
+      ? EditorState.createWithContent(
+          convertFromRaw(JSON.parse(apartment.description)),
+        )
+      : EditorState.createEmpty();
+
+    const houseRules = apartment.houseRules
+      ? EditorState.createWithContent(
+          convertFromRaw(JSON.parse(apartment.houseRules)),
+        )
+      : EditorState.createEmpty();
+
+    this.editorsContent = {
+      instructions: instructions.getCurrentContent(),
+      description: description.getCurrentContent(),
+      houseRules: houseRules.getCurrentContent(),
+    };
 
     this.state = {
       name,
-      description,
       address,
       wifiName,
       wifiPassword,
       instructions,
+      description,
+      houseRules,
     };
   }
 
@@ -62,10 +81,18 @@ class PropertyForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+
     const data = {
       ...this.state,
-      instructions: convertToRaw(this.editorsContent.instructions),
+      instructions: JSON.stringify(
+        convertToRaw(this.editorsContent.instructions),
+      ),
+      description: JSON.stringify(
+        convertToRaw(this.editorsContent.description),
+      ),
+      houseRules: JSON.stringify(convertToRaw(this.editorsContent.houseRules)),
     };
+
     this.props.onSubmit(data);
   }
 
@@ -77,6 +104,7 @@ class PropertyForm extends React.Component {
       wifiName,
       wifiPassword,
       instructions,
+      houseRules,
     } = this.state;
 
     return (
@@ -117,19 +145,27 @@ class PropertyForm extends React.Component {
             onChange={this.handleChange}
           />
         </label>
-        <label htmlFor="description">
-          Description:
-          <textarea
-            name="description"
-            value={description}
-            onChange={this.handleChange}
-          />
-        </label>
         <label htmlFor="instructions">
           Instructions:
           <TextEditor
             name="instructions"
             content={instructions}
+            onContentChange={this.onEditorContentChange}
+          />
+        </label>
+        <label htmlFor="description">
+          Description:
+          <TextEditor
+            name="description"
+            content={description}
+            onContentChange={this.onEditorContentChange}
+          />
+        </label>
+        <label htmlFor="houseRules">
+          House Rules:
+          <TextEditor
+            name="houseRules"
+            content={houseRules}
             onContentChange={this.onEditorContentChange}
           />
         </label>

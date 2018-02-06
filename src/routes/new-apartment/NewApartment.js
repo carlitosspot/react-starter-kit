@@ -19,26 +19,23 @@ class NewApartment extends React.Component {
   }
 
   handleSubmit(apartment) {
-    // const data = apartment;
-    // data.listed = true;
-    // this.setState({ saving: true });
-    // const url = `/api/contracts`;
-    // fetch(url, {
-    //   method: 'POST', // or 'PUT'
-    //   body: JSON.stringify(data),
-    //   headers: new Headers({
-    //     'Content-Type': 'application/json',
-    //   }),
-    // })
-    //   .then(res => res.json())
-    //   .catch(error => error)
-    //   .then(response => {
-    //     this.setState({ saving: false });
-    //     return response;
-    //   });
-
-    // eslint-disable-next-line no-console
-    console.log(this, apartment);
+    const data = apartment;
+    data.listed = true;
+    this.setState({ saving: true });
+    const url = `/api/apartments`;
+    fetch(url, {
+      method: 'POST', // or 'PUT'
+      body: JSON.stringify(data),
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+    })
+      .then(res => res.json())
+      .catch(error => error)
+      .then(response => {
+        this.setState({ saving: false });
+        return response;
+      });
   }
 
   render() {
