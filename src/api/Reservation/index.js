@@ -1,7 +1,8 @@
+import express from 'express';
 import getAllReservations from './getAllReservations';
 
-const api = {
-  getAllReservations,
-};
+const reservationRouter = express.Router();
 
-export default api;
+reservationRouter.route('/').get(getAllReservations);
+
+export default reservationRouter;

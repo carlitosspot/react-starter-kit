@@ -1,6 +1,6 @@
-import Apartment from '../data/models/Apartment';
+import Apartment from '../../data/models/Apartment';
 
-export default function saveSignedContract(req, res) {
+export default function saveApartment(req, res) {
   const property = new Apartment(req.body);
 
   return property
