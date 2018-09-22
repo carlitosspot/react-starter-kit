@@ -1,4 +1,4 @@
-import Apartment from '../../data/models/Apartment';
+import Apartment from '../../data/models/Apartment/Apartment';
 
 export default function updateApartmentDetails(req, res) {
   /* eslint no-underscore-dangle: 0 */
