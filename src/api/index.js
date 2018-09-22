@@ -1,11 +1,8 @@
 import express from 'express';
-import getApartmentDetails from './Apartment/getApartment';
+import Apartment from './Apartment/getApartment';
 
-const api = express();
+const restRouter = express.Router();
 
-/**
- * Get apartment info/details
- */
-api.get('/apartments/:id', getApartmentDetails);
+restRouter.use('/apartments', Apartment);
 
-export default api;
+export default restRouter;
