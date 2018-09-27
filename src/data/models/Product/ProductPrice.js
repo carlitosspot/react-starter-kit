@@ -3,9 +3,10 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const ProductPrice = new Schema({
-  product_id: String,
-  price: Number,
-  apartment_id: String,
+  productId: String,
+  price: String,
+  apartmentId: String,
+  available: Boolean,
 });
 
 export default mongoose.model('ProductPrice', ProductPrice);

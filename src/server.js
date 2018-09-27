@@ -33,6 +33,7 @@ import router from './router';
 import chunks from './chunk-manifest.json'; // eslint-disable-line import/no-unresolved
 import config from './config';
 import api from './api';
+import dataLoader from './dbdata/loader';
 
 const { databaseUrl, databaseName } = config;
 const dbUrl = `${databaseUrl}${databaseName}`;
@@ -129,6 +130,7 @@ if (__DEV__) {
 // );
 
 app.use('/api', api);
+app.use('/load', dataLoader);
 
 //
 // Register server-side rendering middleware

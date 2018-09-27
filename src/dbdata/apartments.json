@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Luxury apartment 2 ",
+    "address": "132 lexington",
+    "apartmentNumber": "2",
+    "wifiName": "godspeed",
+    "wifiPassword": "wuuuut",
+    "city": "New York",
+    "instructions": "",
+    "state": "NY",
+    "description": "",
+    "zip": "10019",
+    "listed": true
+  },
+  {
+    "name": "Luxury apartment 3",
+    "address": "132 lexington",
+    "apartmentNumber": "3",
+    "wifiName": "luxluxlux",
+    "wifiPassword": "zzzzzzz",
+    "city": "New York",
+    "instructions": "",
+    "state": "NY",
+    "description": "",
+    "zip": "10019",
+    "listed": true
+  }
+]

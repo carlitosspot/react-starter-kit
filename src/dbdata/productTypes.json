@@ -1,0 +1,32 @@
+[
+  {
+    "type": "cleanings",
+    "longName": "Extra Cleaning",
+    "shortName": "Cleaning"
+  },
+  {
+    "type": "towels",
+    "longName": "Extra Towel",
+    "shortName": "Towel"
+  },
+  {
+    "type": "beds",
+    "longName": "Extra Bed",
+    "shortName": "Bed"
+  },
+  {
+    "type": "gameConsoles",
+    "longName": "Game Console Rentals",
+    "shortName": "Game Consoles"
+  },
+  {
+    "type": "gameConsoles",
+    "longName": "Game Console Rentals",
+    "shortName": "Game Consoles"
+  },
+  {
+    "type": "boardGames",
+    "longName": "Game Board Rentals",
+    "shortName": "Game Boards"
+  }
+]

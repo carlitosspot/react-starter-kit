@@ -6,12 +6,15 @@ const ApartmentSchema = new Schema({
   name: String,
   listed: Boolean,
   address: String,
+  apartmentNumber: String,
+  city: String,
+  zip: String,
   description: String,
   wifiName: String,
   wifiPassword: String,
   instructions: String,
   houseRules: String,
-  updated_at: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
 });
 
 // Create a model based on the schema
