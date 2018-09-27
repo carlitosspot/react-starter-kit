@@ -4,7 +4,7 @@
     "typeId": "",
     "title": "Extra Cleaning",
     "description":
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
+      "Looking for that fresh hotel cleaning service? Look no further! Our cleaning staff is ready to give you a 5-star cleaning service that will make you want to eat off the ground",
     "features": [
       "Full House Clean",
       "Clean Bend and Pillow Sheets",
@@ -12,6 +12,16 @@
       "Dish Cleaning"
     ],
     "image":
-      "https://res.cloudinary.com/dvvlwbxun/image/upload/v1537335325/bedding.jpg"
+      "https://res.cloudinary.com/dvvlwbxun/image/upload/v1538061641/House_Cleaning.png"
+  },
+  {
+    "type": "cleanings",
+    "typeId": "",
+    "title": "Extra Bedding",
+    "description":
+      "Not enough beds in the house? Rent one of our extra beds for the night. You have the option to choose a Rollaway Bed or Air Mattress",
+    "features": ["2 pillows", "1 blanket", "1 set of bed sheets"],
+    "image":
+      "https://res.cloudinary.com/dvvlwbxun/image/upload/v1538061641/House_Cleaning.png"
   }
 ]
