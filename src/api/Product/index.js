@@ -9,6 +9,6 @@ const productRouter = express.Router();
 productRouter.route('/').get(getAllProducts);
 productRouter.route('/types').get(getAllProductTypes);
 productRouter.route('/apartment/:id').get(getApartmentProducts);
-productRouter.route('/:id/:apartmentId').get(getProduct);
+productRouter.route('/:id/apartment/:apartmentId').get(getProduct);
 
 export default productRouter;

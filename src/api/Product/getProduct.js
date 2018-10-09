@@ -1,24 +1,46 @@
-const products = {
-  abc123456789: {
-    id: 'abc123456789',
-    type: 'cleanings',
-    type_id: '5a7937c16915e6722749909ff',
-    title: 'Extra Cleaning',
-    description:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
-    feature: [
-      'Full House Clean',
-      'Clean Bend and Pillow Sheets',
-      'Clean Bathroom towels',
-      'Dish Cleaning',
-    ],
-    image:
-      'https://res.cloudinary.com/dvvlwbxun/image/upload/v1537335325/bedding.jpg',
-  },
-};
+import mongoose from 'mongoose';
+import ProductPrice from '../../data/models/Product/ProductPrice';
+import Product from '../../data/models/Product/Product';
 
 export default function getProduct(req, res) {
   const { id, apartmentId } = req.params;
-  const product = { ...products[id], apartmentId };
-  return res.json(product);
+  if (!id || !apartmentId) {
+    return res.json([]);
+  }
+  const priceId = mongoose.Types.ObjectId(id);
+  return ProductPrice.findOne({ _id: priceId }).then(productPrice => {
+    if (productPrice.apartmentId !== apartmentId) {
+      return res.json({});
+    }
+    const productInfoId = mongoose.Types.ObjectId(productPrice.productId);
+    return Product.findOne({ _id: productInfoId }).then(productInfo => {
+      const { _id, price, available, productId } = productPrice;
+      const {
+        type,
+        typeId,
+        title,
+        description,
+        features,
+        image,
+        brand,
+      } = productInfo;
+
+      const result = {
+        _id,
+        price,
+        apartmentId,
+        available,
+        productId,
+        type,
+        typeId,
+        title,
+        description,
+        features,
+        image,
+        brand,
+      };
+
+      res.json(result);
+    });
+  });
 }

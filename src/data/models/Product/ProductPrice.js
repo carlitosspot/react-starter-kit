@@ -9,4 +9,5 @@ const ProductPrice = new Schema({
   available: Boolean,
 });
 
-export default mongoose.model('ProductPrice', ProductPrice);
+export default mongoose.models.ProductPrice ||
+  mongoose.model('ProductPrice', ProductPrice);

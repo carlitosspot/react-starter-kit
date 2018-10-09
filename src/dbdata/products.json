@@ -15,12 +15,77 @@
       "https://res.cloudinary.com/dvvlwbxun/image/upload/v1538061641/House_Cleaning.png"
   },
   {
-    "type": "cleanings",
+    "type": "beddings",
     "typeId": "",
     "title": "Extra Bedding",
     "description":
       "Not enough beds in the house? Rent one of our extra beds for the night. You have the option to choose a Rollaway Bed or Air Mattress",
     "features": ["2 pillows", "1 blanket", "1 set of bed sheets"],
+    "image":
+      "https://res.cloudinary.com/dvvlwbxun/image/upload/v1538061641/House_Cleaning.png"
+  },
+  {
+    "type": "gameConsoles",
+    "typeId": "",
+    "title": "Game Console Rentals",
+    "brand": "xbox",
+    "description":
+      "Blast into your favorite games with one of our console rentals. You can choose an Xbox One, Playstation 4 or Nintendo Switch.",
+    "features": ["2 Controllers", "10 Games", "1 Online account"],
+    "image":
+      "https://res.cloudinary.com/dvvlwbxun/image/upload/v1538061641/House_Cleaning.png"
+  },
+  {
+    "type": "gameControllers",
+    "brand": "xbox",
+    "typeId": "",
+    "title": "Xbox One",
+    "description": "",
+    "features": [],
+    "image": ""
+  },
+  {
+    "type": "gameControllers",
+    "brand": "playstation",
+    "typeId": "",
+    "title": "Playstation 4",
+    "description": "",
+    "features": [],
+    "image": ""
+  },
+  {
+    "type": "gameControllers",
+    "typeId": "",
+    "brand": "nintendo",
+    "title": "Nintendo Switch",
+    "description": "",
+    "features": [],
+    "image": ""
+  },
+  {
+    "type": "towels",
+    "typeId": "",
+    "title": "Extra Towels",
+    "description": "Order some extra towels for your bathroom.",
+    "features": ["2 shower towels", "2 washcloths", "1 floor towel"],
+    "image":
+      "https://res.cloudinary.com/dvvlwbxun/image/upload/v1538061641/House_Cleaning.png"
+  },
+  {
+    "type": "boardGames",
+    "typeId": "",
+    "title": "Game Board Rentals",
+    "description":
+      "Looking to have a chill night and not wanting to party the night away? Rent our Board Games Set and enjoy a family friendly evening.",
+    "features": [
+      "Monopoly",
+      "Chess",
+      "Deck of playing cards",
+      "Cards Against Humanity",
+      "Uno",
+      "Clue",
+      "Twister"
+    ],
     "image":
       "https://res.cloudinary.com/dvvlwbxun/image/upload/v1538061641/House_Cleaning.png"
   }

@@ -10,4 +10,5 @@ const ReservationSchema = new Schema({
 });
 
 // Create a model based on the schema
-export default mongoose.model('Reservation', ReservationSchema);
+export default mongoose.models.Reservation ||
+  mongoose.model('Reservation', ReservationSchema);

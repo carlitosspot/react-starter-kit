@@ -18,4 +18,5 @@ const ApartmentSchema = new Schema({
 });
 
 // Create a model based on the schema
-export default mongoose.model('Apartment', ApartmentSchema);
+export default mongoose.models.Apartment ||
+  mongoose.model('Apartment', ApartmentSchema);

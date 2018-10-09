@@ -8,4 +8,5 @@ const ProductType = new Schema({
   shortName: String,
 });
 
-export default mongoose.model('ProductType', ProductType);
+export default mongoose.models.ProductType ||
+  mongoose.model('ProductType', ProductType);

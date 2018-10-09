@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import ProductPrice from '../../data/models/Product/ProductPrice';
 import Product from '../../data/models/Product/Product';
 
-export default function getApartmentProducts(req, res) {
+export default function getAllApartmentProducts(req, res) {
   const { id } = req.params;
 
   if (!id || !id.length) {
@@ -33,6 +33,7 @@ export default function getApartmentProducts(req, res) {
           description,
           features,
           image,
+          brand,
         } = productInfo;
         return {
           _id,
@@ -45,6 +46,7 @@ export default function getApartmentProducts(req, res) {
           description,
           features,
           image,
+          brand,
         };
       });
       res.json(apartmentProducts);

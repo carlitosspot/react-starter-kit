@@ -27,13 +27,20 @@ const resetProductTypes = () =>
       return Promise.all(ids);
     });
 
-const resetProducts = () =>
-  Product.find({})
+const resetProducts = productTypes => {
+  const types = JSON.parse(JSON.stringify(productTypes));
+  const data = productsData.map(info => {
+    const typeId = types.find(typeInfo => typeInfo.type === info.type);
+    return { ...info, typeId };
+  });
+
+  return Product.find({})
     .remove()
     .then(() => {
-      const ids = productsData.map(info => new Product(info).save());
+      const ids = data.map(info => new Product(info).save());
       return Promise.all(ids);
     });
+};
 
 const resetProductPrices = (apartments, products) =>
   ProductPrice.find({})
@@ -66,25 +73,30 @@ const resetProductPrices = (apartments, products) =>
 const connect = (req, res) =>
   mongoose.connect(dbUrl).then(
     () =>
-      Promise.all([
-        resetApartments(),
-        resetProductTypes(),
-        resetProducts(),
-      ]).then(values => {
-        const [apartments, productTypes, products] = values;
-        return resetProductPrices(apartments, products).then(prices => {
-          const totalPrices = prices.length;
-          const totalApartments = apartments.length;
-          const totalProductTypes = productTypes.length;
-          const totalProducts = products.length;
-          res.send({
-            totalApartments,
-            totalProductTypes,
-            totalPrices,
-            totalProducts,
+      Promise.all([resetApartments(), resetProductTypes()])
+        .then(values => {
+          const [apartments, productTypes] = values;
+          return resetProducts(productTypes).then(products => [
+            apartments,
+            productTypes,
+            products,
+          ]);
+        })
+        .then(values => {
+          const [apartments, productTypes, products] = values;
+          return resetProductPrices(apartments, products).then(prices => {
+            const totalPrices = prices.length;
+            const totalApartments = apartments.length;
+            const totalProductTypes = productTypes.length;
+            const totalProducts = products.length;
+            res.send({
+              totalApartments,
+              totalProductTypes,
+              totalPrices,
+              totalProducts,
+            });
           });
-        });
-      }),
+        }),
     () => res.send('unable to load data'),
   );
 

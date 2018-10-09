@@ -10,7 +10,7 @@
     "shortName": "Towel"
   },
   {
-    "type": "beds",
+    "type": "beddings",
     "longName": "Extra Bed",
     "shortName": "Bed"
   },
@@ -20,9 +20,9 @@
     "shortName": "Game Consoles"
   },
   {
-    "type": "gameConsoles",
-    "longName": "Game Console Rentals",
-    "shortName": "Game Consoles"
+    "type": "gameControllers",
+    "longName": "Game Controller Rentals",
+    "shortName": "Game Controllers"
   },
   {
     "type": "boardGames",
