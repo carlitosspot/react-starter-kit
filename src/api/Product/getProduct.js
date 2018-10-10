@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import ProductPrice from '../../data/models/Product/ProductPrice';
 import Product from '../../data/models/Product/Product';
+import formatProduct from '../../utilities/formatProduct';
 
 export default function getProduct(req, res) {
   const { id, apartmentId } = req.params;
@@ -14,32 +15,7 @@ export default function getProduct(req, res) {
     }
     const productInfoId = mongoose.Types.ObjectId(productPrice.productId);
     return Product.findOne({ _id: productInfoId }).then(productInfo => {
-      const { _id, price, available, productId } = productPrice;
-      const {
-        type,
-        typeId,
-        title,
-        description,
-        features,
-        image,
-        brand,
-      } = productInfo;
-
-      const result = {
-        _id,
-        price,
-        apartmentId,
-        available,
-        productId,
-        type,
-        typeId,
-        title,
-        description,
-        features,
-        image,
-        brand,
-      };
-
+      const result = formatProduct(productPrice, productInfo);
       res.json(result);
     });
   });

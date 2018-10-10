@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import ProductPrice from '../../data/models/Product/ProductPrice';
 import Product from '../../data/models/Product/Product';
+import formatProduct from '../../utilities/formatProduct';
 
 export default function getAllApartmentProducts(req, res) {
   const { id } = req.params;
@@ -24,30 +25,9 @@ export default function getAllApartmentProducts(req, res) {
         productList[pdt._id.toString()] = pdt;
       });
       const apartmentProducts = productPrices.map(pPrice => {
-        const { _id, price, apartmentId, available, productId } = pPrice;
+        const { productId } = pPrice;
         const productInfo = productList[productId];
-        const {
-          type,
-          typeId,
-          title,
-          description,
-          features,
-          image,
-          brand,
-        } = productInfo;
-        return {
-          _id,
-          price,
-          apartmentId,
-          available,
-          type,
-          typeId,
-          title,
-          description,
-          features,
-          image,
-          brand,
-        };
+        return formatProduct(pPrice, productInfo);
       });
       res.json(apartmentProducts);
     });
