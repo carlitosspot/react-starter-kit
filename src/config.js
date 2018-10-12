@@ -33,6 +33,8 @@ module.exports = {
       `http://localhost:${process.env.PORT || 3000}`,
   },
 
+  stripeKey: process.env.KEY_STRIPE || '',
+
   // Database
   databaseUrl: process.env.DATABASE_URL,
 

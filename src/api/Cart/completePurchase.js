@@ -1,9 +1,14 @@
-export default function completePurchase(req, res) {
-  const { items } = req.body;
+import Stripe from '../../data/models/Stripe';
 
-  if (!items || !items.length) {
+const { chargeCard } = Stripe;
+
+export default function completePurchase(req, res) {
+  const { items, token, amount } = req.body;
+
+  if (!items || !items.length || !token || !token.length) {
     return res.json({ complete: false });
   }
-
-  return res.json({ complete: true, items });
+  return chargeCard({ token }).then(result =>
+    res.json({ complete: true, items, result, amount }),
+  );
 }
