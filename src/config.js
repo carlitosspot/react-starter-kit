@@ -35,6 +35,8 @@ module.exports = {
 
   stripeKey: process.env.KEY_STRIPE || '',
 
+  sendGridKey: process.env.KEY_SENDGRID || '',
+
   // Database
   databaseUrl: process.env.DATABASE_URL,
 
