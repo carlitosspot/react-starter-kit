@@ -228,9 +228,11 @@ app.use((err, req, res, next) => {
 //
 // Launch the server
 // -----------------------------------------------------------------------------
-app.listen(config.port, () => {
-  console.info(`The server is running at http://localhost:${config.port}/`);
-});
+if (!module.hot) {
+  app.listen(config.port, () => {
+    console.info(`The server is running at http://localhost:${config.port}/`);
+  });
+}
 
 //
 // Hot Module Replacement
