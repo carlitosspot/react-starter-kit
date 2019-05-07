@@ -36,8 +36,6 @@ import api from './api';
 import dataLoader from './dbdata/loader';
 import email from './data/models/Mail/emailReceipt';
 
-email(50);
-
 const { databaseUrl, databaseName } = config;
 const dbUrl = `${databaseUrl}${databaseName}`;
 

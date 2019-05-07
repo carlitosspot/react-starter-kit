@@ -10,6 +10,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+
 import s from './Home.css';
 
 class Home extends React.Component {
@@ -27,16 +28,68 @@ class Home extends React.Component {
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <h1>Properties head</h1>
-          {this.props.apartments.map(item => (
-            /* eslint no-underscore-dangle: 0 */
-            <article key={`${item._id}`} className={s.newsItem}>
-              <h1 className={s.newsTitle}>
-                <a href={`/apartment/${item._id}/edit`}>{item.name}</a>
-              </h1>
-              <div className={s.newsDesc}> {item.address}</div>
-            </article>
-          ))}
+          <ul>
+            <h2>Endpoints:</h2>
+            <li>
+              <td>
+                <h3>Apartments</h3>
+                <tr>
+                  <span>GET</span>/api/apartments
+                </tr>
+                <tr>
+                  <span>POST</span>/api/apartments
+                </tr>
+                <tr>
+                  <span>GET</span>/api/apartments/:id
+                </tr>
+                <tr>
+                  <span>GET</span>/api/apartments/:id
+                </tr>
+                <tr>
+                  <span>GET</span>/api/apartments/documentation
+                </tr>
+              </td>
+            </li>
+            <li>
+              <td>
+                <h3>Reservations</h3>
+                <tr>
+                  <span>GET</span>/api/reservations
+                </tr>
+                <tr>
+                  <span>GET</span>/api/reservations/documentation
+                </tr>
+              </td>
+            </li>
+            <li>
+              <td>
+                <h3>Products</h3>
+                <tr>
+                  <span>GET</span>/api/products
+                </tr>
+                <tr>
+                  <span>GET</span>/api/products/types
+                </tr>
+                <tr>
+                  <span>GET</span>/api/products/apartment/:id
+                </tr>
+                <tr>
+                  <span>GET</span>/api/products/:id/apartment/:apartmentId
+                </tr>
+                <tr>
+                  <span>GET</span>/api/products/documentation
+                </tr>
+              </td>
+            </li>
+            <li>
+              <td>
+                <h3>Cart</h3>
+                <tr>
+                  <span>POST</span>/api/cart
+                </tr>
+              </td>
+            </li>
+          </ul>
         </div>
       </div>
     );
